@@ -10,4 +10,5 @@ Route::group([
 ], function () {
     Route::apiResource('banned', BanController::class)->only(['index', 'store', 'destroy']);
     Route::apiResource('info', \App\Http\Controllers\PokemonController::class)->only(['index']);
+    Route::apiResource('pokemon', \App\Http\Controllers\PokemonController::class)->except(['index']);
 });

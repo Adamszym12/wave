@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\BanStoreRequest;
 use App\Http\Requests\PokemonIndexRequest;
+use App\Http\Requests\PokemonStoreRequest;
+use App\Http\Requests\PokemonUpdateRequest;
 use App\Http\Resources\PokemonResource;
 use App\Http\Services\PokeApiService;
 use App\Models\Pokemon;
@@ -26,27 +27,31 @@ class PokemonController extends Controller
         return $pokemons;
     }
 
-//    public function store(BanStoreRequest $request): PokemonResource
-//    {
-//        $pokemon = Pokemon::firstOrCreate(
-//            ['name' => $request->name],
-//            $request->validated()
-//        );
-//
-//        $pokemon->is_banned = true;
-//        $pokemon->save();
-//
-//        return new PokemonResource($pokemon);
-//    }
-//
-//    public function destroy(Pokemon $banned): JsonResponse
-//    {
-//        $banned->is_banned = false;
-//
-//        $banned->save();
-//
-//        return response()->json([
-//            'message' => 'Pokemon unbanned successfully.'
-//        ]);
-//    }
+    public function store(PokemonStoreRequest $request): PokemonResource
+    {
+        $pokemon = Pokemon::create($request->validated());
+
+        return new PokemonResource($pokemon);
+    }
+
+    public function show(Pokemon $pokemon): PokemonResource
+    {
+        return new PokemonResource($pokemon);
+    }
+
+    public function update(PokemonUpdateRequest $request, Pokemon $pokemon): PokemonResource
+    {
+        $pokemon->update($request->validated());
+
+        return new PokemonResource($pokemon);
+    }
+
+    public function destroy(Pokemon $pokemon): JsonResponse
+    {
+        $pokemon->delete();
+
+        return response()->json([
+            'message' => 'Pokemon deleted successfully.'
+        ]);
+    }
 }
