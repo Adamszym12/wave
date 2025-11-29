@@ -112,4 +112,6 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+
+    'secret_key' => env('AUTH_SECRET_KEY'),
 ];

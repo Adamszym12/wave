@@ -36,7 +36,7 @@ class BanController extends Controller
         $banned->save();
 
         return response()->json([
-            'message' = > 'Pokemon unbanned successfully.'
+            'message' => 'Pokemon unbanned successfully.'
         ]);
     }
 }
