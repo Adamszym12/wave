@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "147b856c-b932-42a4-b2bd-cecba32090d3",
+		"name": "v1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Ban index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wave.localhost/api/v1/banned",
+					"protocol": "http",
+					"host": [
+						"wave",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banned"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ban Store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"ditto\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://wave.localhost/api/v1/banned",
+					"protocol": "http",
+					"host": [
+						"wave",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banned"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ban Destroy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://wave.localhost/api/v1/banned/1",
+					"protocol": "http",
+					"host": [
+						"wave",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"banned",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Info Index",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://wave.localhost/api/v1/info?names[]=ditto&names[]=pikachu&names[]=bulbasaur&names[]=test2",
+					"protocol": "http",
+					"host": [
+						"wave",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"info"
+					],
+					"query": [
+						{
+							"key": "names[]",
+							"value": "ditto"
+						},
+						{
+							"key": "names[]",
+							"value": "pikachu"
+						},
+						{
+							"key": "names[]",
+							"value": "bulbasaur"
+						},
+						{
+							"key": "names[]",
+							"value": "test2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon Store",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"ditto\",\n    \"data\": {\n        \"asd\": \"dsa\",\n        \"asd2\": \"dsa2\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://wave.localhost/api/v1/pokemon",
+					"protocol": "http",
+					"host": [
+						"wave",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pokemon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"test3\",\n    \"data\": {\n        \"asd\": \"dsa233\",\n        \"asd2\": \"dsa23\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://wave.localhost/api/v1/pokemon/1",
+					"protocol": "http",
+					"host": [
+						"wave",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pokemon",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pokemon Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://wave.localhost/api/v1/pokemon/1",
+					"protocol": "http",
+					"host": [
+						"wave",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pokemon",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.request.headers.add({",
+					"    key: \"Accept\",",
+					"    value: \"application/json\"",
+					"});",
+					"",
+					"",
+					"pm.request.headers.add({",
+					"    key: \"X-SUPER-SECRET-KEY\",",
+					"    value: \"secret_key\"",
+					"});"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
