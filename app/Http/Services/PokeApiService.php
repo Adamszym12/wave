@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class PokeApiService
@@ -10,14 +11,15 @@ class PokeApiService
 
     public function getPokemon(string $name): array
     {
-        $response = Http::get("$this->url/pokemon/$name");
+        return Cache::remember("pokemon.$name", 60 * 60, function () use ($name) {
+            $response = Http::get("$this->url/pokemon/$name");
 
+            if ($response->failed()) {
+                throw new \Exception("PokeAPI request failed: " . $response->body());
+            }
 
-        if ($response->failed()) {
-            throw new \Exception("PokeAPI request failed: " . $response->body());
-        }
-
-        return $response->json();
+            return $response->json();
+        });
     }
 
     public function pokemonExists(string $name): bool

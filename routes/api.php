@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BanController;
+use App\Http\Controllers\PokemonController;
 use App\Http\Middleware\CheckSecretKey;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +10,6 @@ Route::group([
     'middleware' => CheckSecretKey::class
 ], function () {
     Route::apiResource('banned', BanController::class)->only(['index', 'store', 'destroy']);
-    Route::apiResource('info', \App\Http\Controllers\PokemonController::class)->only(['index']);
-    Route::apiResource('pokemon', \App\Http\Controllers\PokemonController::class)->except(['index']);
+    Route::apiResource('info', PokemonController::class)->only(['index']);
+    Route::apiResource('pokemon', PokemonController::class)->except(['index']);
 });

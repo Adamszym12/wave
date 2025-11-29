@@ -4,6 +4,10 @@ http://url_porjektu/docs/api
 Można również wgrać kolekcję postmana z wszystkimi endpointami z pliku
 [v1.postman_collection.json](v1.postman_collection.json)
 
+Krótki opis:
+Udało mi się zrealizować wszystkie podpunkty, endpoint "info"
+również jest objęty autoryzacją. Z cachowaniem poszedłem na "łatwiznę" i cachuje sobie po prostu na godzinę.
+
 Setup
 
 ```
@@ -15,6 +19,7 @@ $ php artisan serve
 ```
 
 Ścieżki
+
 ```
   GET|HEAD        api/v1/banned ............................................................................................................................................................... banned.index › BanController@index
   POST            api/v1/banned ............................................................................................................................................................... banned.store › BanController@store
