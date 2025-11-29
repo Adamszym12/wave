@@ -18,9 +18,23 @@ class PokemonController extends Controller
         $service = app(PokeApiService::class);
 
         foreach ($request->names as $name) {
-            if (!Pokemon::where('is_banned', true)->where('name', $name)->exists()) {
-                $pokemon = $service->getPokemon($name);
-                $pokemons->push([$name => $pokemon]);
+            $pokemon = Pokemon::where('name', $name)->first();
+
+            if ($pokemon) {
+                if ($pokemon->is_banned) {
+                    continue;
+                }
+
+                $pokemons->push(PokemonResource::make($pokemon));
+
+            } else {
+                $data = $service->getPokemon($name);
+                $data['is_external'] = true;
+
+                $pokemons->push([
+                    'name' => $name,
+                    'data' => $data,
+                ]);
             }
         }
 

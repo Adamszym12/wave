@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\PokemonExistsInApi;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PokemonStoreRequest extends FormRequest
@@ -22,7 +23,7 @@ class PokemonStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'unique:pokemon,name'],
+            'name' => ['required', 'string', 'unique:pokemon,name', new PokemonExistsInApi],
             'data' => ['array', 'nullable'],
         ];
     }

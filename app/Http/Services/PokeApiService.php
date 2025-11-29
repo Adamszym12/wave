@@ -19,4 +19,15 @@ class PokeApiService
 
         return $response->json();
     }
+
+    public function pokemonExists(string $name): bool
+    {
+        $response = Http::get("$this->url/pokemon/$name");
+
+        if ($response->status() == 404) {
+            return false;
+        }
+
+        return true;
+    }
 }
